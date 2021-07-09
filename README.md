@@ -10,7 +10,7 @@ git@github.com:mateuszao/cards-games-cms.git
 
 - Com o repositório clonado nos vamos precisar rodar alguns comandos para baixar as dependências e pacotes 
 - Na sua maquina é necessário ter o composer instalado que é o gerenciador de pacotes do PHP
-- Caso não tenha é só instar 
+- Caso não tenha é só instalar 
 
 ```
 https://getcomposer.org/download/
@@ -28,7 +28,7 @@ https://nodejs.org/en/download/
 composer install
 ```
 
-- Depois que o comando foi rodar vamos precisar ir no arquivo .env para configurar o banco de dados
+- Depois que o comando rodar vamos precisar ir no arquivo .env para configurar o banco de dados
 - Feito isso precisamos agora rodar nossas migrations e Seeders
 
 ```
@@ -45,7 +45,7 @@ php artisan db:seed
 php artissan serve
 ```
 
-Que vai cair na home do nosso site já com os campos todos certinhos pois como criamos a seed e migrations já estão sendo referenciadas no banco
+Que vai cair na home do nosso site já com os campos certinhos pois como criamos a seed e migrations tudo esta sendo referenciadas com o que colocamos no banco
 
 <img src='public/images/Readme-img/readme-img-001.png'>
 
