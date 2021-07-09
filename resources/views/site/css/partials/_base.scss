@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+//Lato Font
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+//Montserrat Font
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+$Lato: 'Lato', sans-serif;
+$Montserrat: 'Montserrat';
+
+$Font-Normal: 500;
+$Font-Bold: 700;
+
+//Padding e margin
+$gap-1: 8px;
+$gap-2: 16px;
+$gap-2_5: 32px;
+$gap-3: 48px;
+$gap-4: 72px;
+$gap-5: 128px;
+
+body {
+    font-family: sans-serif;
+    margin: 0px;
+    font-size: 1.125rem;
+    background-color: $Bg-home;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+p, h1, h2, h3, h4, h5 {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+
+    @include responsive-notebook(){
+        max-width: 1110px;
+    }
+
+    @include responsive-notebook-Small(){
+        max-width: 960px;
+    }
+
+    @include responsive-tablet-large(){
+        max-width: 720px;
+    }
+
+    @include responsive-tablet-Small(){
+        max-width: 450px;
+    }
+
+    @include responsive-mobile-Medium(){
+        max-width: 300px;
+    }
+
+    @include responsive-mobile-Small(){
+        max-width: 280px;
+    }
+}
+
+@mixin baseTituloSite($fontSize, $fontFamily, $color){
+    font-size: $fontSize;
+    font-family: $fontFamily;
+    color: $color;
+}
+
+@mixin btnBase($width, $height, $color, $bgColor){
+    width: $width;
+    height: $height;
+    background: $bgColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-family: $Montserrat;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: .5s;
+    }
+}
+
+@mixin baseTituloParagrafo($fontSize, $fontFamily, $color){
+    font-size: $fontSize;
+    font-family: $fontFamily;
+    color: $color;
+    padding: 0 0 15px 0;
+    line-height: 1.2;
+}

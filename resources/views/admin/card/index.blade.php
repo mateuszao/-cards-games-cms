@@ -20,10 +20,10 @@
 
         <div class="inicio-home">
             <div>
-                <h4>Cadastro informações | home |</h4>
+                <h4>Cadastro informações | Card |</h4>
             </div>
             <div>
-                <a href="{{route('admin.inicio.create')}}" class="btn btn-lg btn-success"> Criar Inicio </a>
+                <a href="{{route('admin.card.create')}}" class="btn btn-lg btn-success"> Criar CARD </a>
             </div>
         </div>
     </div>
@@ -42,16 +42,16 @@
         </thead>
 
         <tbody>
-        @foreach($inicio as $i)
+        @foreach($card as $c)
             <tr>
-                <td>{{ $i->id}}</td>
-                <td>{{ $i->titulo}}</td>
-                <td>{{ $i->descricao }}</td>
+                <td>{{ $c->id}}</td>
+                <td>{{ $c->titulo}}</td>
+                <td>{{ $c->descricao }}</td>
 
                 <td>
                     <div class="btn-group">
-                        <a href="{{ route('admin.inicio.edit', ['inicio' => $i->id])}}" class="btn btn-sm btn-primary mr-2"> Editar </a>
-                        <form action="{{route('admin.inicio.destroy', ['inicio' => $i->id])}}" method="post">
+                        <a href="{{ route('admin.card.edit', ['card' => $c->id])}}" class="btn btn-sm btn-primary mr-2"> Editar </a>
+                        <form action="{{route('admin.card.destroy', ['card' => $c->id])}}" method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit" class="btn btn-sm btn-danger">Remover</button>
@@ -64,6 +64,6 @@
         </tbody>
     </table>
 
-    {{$inicio->links()}}
+    {{$card->links()}}
 
 @endsection

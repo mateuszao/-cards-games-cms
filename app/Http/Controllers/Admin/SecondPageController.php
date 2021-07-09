@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Inicio;
+use App\Models\Card;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class FirstPageController extends Controller
+class SecondPageController extends Controller
 {
-    private $inicio;
+    private $card;
 
-    public function __construct(Inicio $inicio)
+    public function __construct(Card $card)
     {
-        $this->inicio = $inicio;
+        $this->card = $card;
     }
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class FirstPageController extends Controller
      */
     public function index()
     {
-        $inicio = $this->inicio->paginate(10);
-        return view('admin.inicio.index', compact('inicio'));
+        $card = $this->card->paginate(10);
+        return view('admin.card.index', compact('card'));
     }
 
     /**
@@ -33,7 +33,7 @@ class FirstPageController extends Controller
      */
     public function create()
     {
-        return view('admin.inicio.create');
+        return view('admin.card.create');
     }
 
     /**
@@ -46,21 +46,21 @@ class FirstPageController extends Controller
     {
         $data = $request->all();
 
-        $inicio = $this->inicio->setAttribute('titulo', $data['nameTitulo']);
-        $inicio = $this->inicio->setAttribute('descricao', $data['description']);
+        $card = $this->card->setAttribute('titulo', $data['nameTitulo']);
+        $card = $this->card->setAttribute('descricao', $data['description']);
 
         if($request->hasFile('fotoPrincipal')) {
 
             $resultFoto = $data['fotoPrincipal']->store('InicioFoto', 'public');
-            $inicio = $this->inicio->setAttribute('foto', $resultFoto);
+            $card = $this->card->setAttribute('foto', $resultFoto);
 
         }
 
-        $pegaAtributos = $this->inicio->getAttributes();
-        $this->inicio->save($pegaAtributos);
+        $pegaAtributos = $this->card->getAttributes();
+        $this->card->save($pegaAtributos);
 
-        flash('Loja Atualizada com sucesso')->success();
-        return redirect()->route('admin.inicio.index');
+        flash('Card criado com sucesso')->success();
+        return redirect()->route('admin.card.index');
     }
 
     /**
@@ -82,8 +82,8 @@ class FirstPageController extends Controller
      */
     public function edit($id)
     {
-        $inicio = $this->inicio->findOrFail($id);
-        return view('admin.inicio.edit', compact('inicio'));
+        $card = $this->card->findOrFail($id);
+        return view('admin.card.edit', compact('card'));
     }
 
     /**
@@ -96,27 +96,27 @@ class FirstPageController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $inicio = $this->inicio->find($id);
+        $card = $this->card->find($id);
 
-        $inicio->setAttribute('titulo', $data['nameTitulo']);
-        $inicio->setAttribute('descricao', $data['description']);
+        $card->setAttribute('titulo', $data['nameTitulo']);
+        $card->setAttribute('descricao', $data['description']);
 
         if($request->hasFile('fotoPrincipal')) {
 
             $resultFoto = $data['fotoPrincipal']->store('InicioFoto', 'public');
-            $inicio->setAttribute('foto', $resultFoto);
+            $card->setAttribute('foto', $resultFoto);
 
         }
 
         $dataAtual = Carbon::now();
-        $inicio->setAttribute('updated_at', $dataAtual->toDateTimeString());
+        $card->setAttribute('updated_at', $dataAtual->toDateTimeString());
 
-        $pegaAtributos = $inicio->getAttributes();
+        $pegaAtributos = $card->getAttributes();
 
-        $inicio->update($pegaAtributos);
+        $card->update($pegaAtributos);
 
-        flash('Atualizado com sucesso')->success();
-        return redirect()->route('admin.inicio.index');
+        flash('Card Atualizado com sucesso')->success();
+        return redirect()->route('admin.card.index');
     }
 
     /**
@@ -127,10 +127,10 @@ class FirstPageController extends Controller
      */
     public function destroy($id)
     {
-        $inicio = $this->inicio->find($id);
-        $inicio->delete();
+        $card = $this->card->find($id);
+        $card->delete();
 
-        flash('Removido com Sucesso')->success();
-        return redirect()->route('admin.inicio.index');
+        flash('Card Removido com Sucesso')->success();
+        return redirect()->route('admin.card.index');
     }
 }
